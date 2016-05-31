@@ -2,5 +2,6 @@ from .partials import *
 
 
 INSTALLED_APPS += [
-    'debug-toolbar',
+    'debug_toolbar',
+    'django_extensions',
 ]
