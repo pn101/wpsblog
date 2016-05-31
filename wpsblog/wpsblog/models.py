@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Post(models.Model):
@@ -11,4 +12,9 @@ class Post(models.Model):
         return self.title
 
     def get_detail_url(self):
-        return '/posts/' + str(self.id) + '/'
+        return reverse(
+                'post-detail',
+                kwargs={
+                    'post_id': self.id
+                }
+        )
