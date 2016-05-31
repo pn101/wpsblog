@@ -6,3 +6,6 @@ class Post(models.Model):
             max_length=120,
     )
     content = models.TextField()
+
+    def __str__(self):
+        return self.title
