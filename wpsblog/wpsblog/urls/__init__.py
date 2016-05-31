@@ -22,4 +22,5 @@ from wpsblog.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
+    url(r'^news/$', news, name='news'),
 ]
