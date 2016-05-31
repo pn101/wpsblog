@@ -7,7 +7,9 @@ def list(request):
     search = request.GET.get('search')
     post_list = Post.objects.all()
     if search:
-        post_list = Post.objects.filter(title=search)
+        post_list = [
+                post for post in post_list if search in post.title
+        ]
 
     return render(
             request,
