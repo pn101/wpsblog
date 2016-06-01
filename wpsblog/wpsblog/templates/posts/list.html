@@ -4,11 +4,11 @@
 
 {% block content %}
     <h1>{{ site_name }}</h1>
-    <form action="{% url 'post-list' %}" method="GET">
+    <form action="{% url 'posts:list' %}" method="GET">
         <input type="text" name="search">
         <input type="submit" value="search">
     </form>
-    <a href="{% url 'post-new' %}">New Post</a>
+    <a href="{% url 'posts:new' %}">New Post</a>
 
 
     <ul>
