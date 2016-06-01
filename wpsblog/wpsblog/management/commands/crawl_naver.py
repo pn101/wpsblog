@@ -38,6 +38,7 @@ class Command(BaseCommand):
             image = image_element.get('src')
 
             NaverPost.objects.create(
+                    keyword=query,
                     title=title,
                     original_url=url,
                     content=content,
