@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ site_name }}</h1>
     <form action="{% url 'naver_posts_list' %}" method="GET">
-        <input type="text" name="keyword">
+        <input type="text" name="query">
         <input type="submit" value="search">
     </form>
     <ul>
@@ -15,7 +15,7 @@
             <a href="{{ naver_post.original_url }}"><h2>{{ naver_post.title }}</h2></a>
             <p>{{ naver_post.keyword }}</p>
             <p>{{ naver_post.content }}</p>
-                    </li>
+        </li>
         {% endfor %}
     </ul>
 {% endblock %}
