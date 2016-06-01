@@ -4,5 +4,6 @@
 
 {% block content %}
     <h1>{{ post.title }}</h1>
+    <a href="{% url 'post-edit' post_id=post.id %}">Edit Post</a>
     <p>{{ post.content }}</p>
 {% endblock %}

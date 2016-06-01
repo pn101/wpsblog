@@ -8,10 +8,13 @@
         <input type="text" name="search">
         <input type="submit" value="search">
     </form>
+    <a href="{% url 'post-new' %}">New Post</a>
+
+
     <ul>
         {% for post in post_list %}
         <li>
-        <a href="{{ post.get_detail_url }}">
+        <a href="{{ post.get_absolute_url }}">
                 <h2>{{ post.title }}</h2>
             </a>
             <p>{{ post.content }}</p>
