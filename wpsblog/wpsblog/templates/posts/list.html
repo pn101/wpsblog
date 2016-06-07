@@ -15,7 +15,7 @@
         {% for post in post_list %}
         <li>
         <a href="{{ post.get_absolute_url }}">
-                <h2>{{ post.title }}</h2>
+            <h2>{{ post.title }} <span>({{ post.comment_set.count }})</span></h2>
             </a>
             <p>{{ post.content }}</p>
         </li>

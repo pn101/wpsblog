@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ site_name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <a href="{% url 'posts:edit' post_id=post.id %}">Edit Post</a>
+    <a href="{% url 'posts:delete' post_id=post.id %}">Delete Post</a>
+    <p>{{ post.content }}</p>
+    
+    <h4>Comments <span>({{ post.comment_set.count }})</span></h3>
+    <ul>
+        {% for post_comment in post.comment_set.all %}
+            {% if post_comment == comment %}
+            <form action="{% url 'posts:comments_update' post_id=post.id comment_id=comment.id %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="content" value="{{ comment.content }}">
+                <input type="submit" value="Submit">
+            </form>
+            {% else %}
+                <li id="comment-{{ post_comment.id }}">
+                    {{ post_comment.content }}
+                    <a href="{% url 'posts:comments_edit' post_id=post.id comment_id=post_comment.id %}">Edit</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <h4>New Comment</h4>
+    <form action="{% url 'posts:comments_create' post_id=post.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content" placeholder="comment...">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

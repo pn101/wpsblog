@@ -7,4 +7,22 @@
     <a href="{% url 'posts:edit' post_id=post.id %}">Edit Post</a>
     <a href="{% url 'posts:delete' post_id=post.id %}">Delete Post</a>
     <p>{{ post.content }}</p>
+    
+    <h4>Comments <span>({{ post.comment_set.count }})</span></h3>
+    <ul>
+        {% for comment in post.comment_set.all %}
+        <li id="comment-{{ comment.id }}">
+            {{ comment.content }}
+            <a href="{% url 'posts:comments_edit' post_id=post.id comment_id=comment.id %}">Edit</a>
+            <a href="{% url 'posts:comments_delete' post_id=post.id comment_id=comment.id %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h4>New Comment</h4>
+    <form action="{% url 'posts:comments_create' post_id=post.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content" placeholder="comment...">
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
