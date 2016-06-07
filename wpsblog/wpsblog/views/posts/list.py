@@ -5,7 +5,8 @@ from wpsblog.models import Post
 
 def list(request):
     search = request.GET.get('search')
-    post_list = Post.objects.all()
+    post_list = Post.objects.filter(is_public=True)
+
     if search:
         post_list = [
                 post for post in post_list if search in post.title
