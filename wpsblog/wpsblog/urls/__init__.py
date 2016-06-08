@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^news/$', news, name='news'),
 
-    url(r'^auth/', include('wpsblog.urls.auth', namespace='auth')),
+    url(r'^', include('wpsblog.urls.auth', namespace='auth')),
 
     url(r'^policy/', include('wpsblog.urls.policy', namespace='policy')),
 
