@@ -1,6 +1,15 @@
-<ul>
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'news' %}">News</a></li>
-    <li><a href="{% url 'posts:list' %}">Blog</a></li>
-    <li><a href="{% url 'naver_posts_list' %}">Naver Blog</a></li>
-</ul>
+<header>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'news' %}">News</a></li>
+        <li><a href="{% url 'posts:list' %}">Blog</a></li>
+        <li><a href="{% url 'naver_posts_list' %}">Naver Blog</a></li>
+        
+        {% if request.user is_authenticated %}
+            <li>Hello {{ request.user.username }}, welcome.</li>
+        {% else %}
+            <li><a href="{% url 'auth:login' %}">Login</a></li>
+            <li><a href="{% url 'auth:signup' %}">SignUp</a></li>
+        {% endif %}
+    </ul>
+</header>

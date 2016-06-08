@@ -7,5 +7,6 @@ def new(request):
             'posts/new.html',
             {
                 'site_name': 'New Post',
+                'author': 'Philip Nam',
             }
     )

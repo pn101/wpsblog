@@ -18,5 +18,6 @@ def list(request):
             {
                 'site_name': 'Blog List',
                 'post_list': post_list,
+                'author': 'Philip Nam',
             }
     )

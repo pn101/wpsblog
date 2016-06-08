@@ -14,5 +14,6 @@ def comments_edit(request, post_id, comment_id):
                 'site_name': 'Edit Comment',
                 'post': post,
                 'comment': comment,
+                'author': 'Philip Nam',
             }
     )

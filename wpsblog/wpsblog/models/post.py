@@ -16,6 +16,10 @@ class Post(models.Model):
             max_length=120,
     )
     content = models.TextField()
+    image = models.ImageField(
+        blank=True,
+        null=True,
+    )
     is_public = models.BooleanField(
             default=True,
     )
@@ -38,3 +42,8 @@ class Post(models.Model):
                     'post_id': self.id,
                 }
         )
+
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        return "http://placehold.it/350x150"

@@ -10,5 +10,6 @@ def edit(request, post_id):
             {
                 'site_name': 'Edit Blog',
                 'post': Post.objects.get(id=post_id),
+                'author': 'Philip Nam',
             }
     )

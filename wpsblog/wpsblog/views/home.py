@@ -7,5 +7,6 @@ def home(request):
             'home.html',
             {
                 'site_name': 'WPS Blog Home',
+                'author': 'Philip Nam',
             }
     )
