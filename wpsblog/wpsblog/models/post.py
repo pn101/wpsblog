@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 
 class PostManager(models.Manager):
@@ -11,6 +12,12 @@ class PostManager(models.Manager):
 class Post(models.Model):
 
     objects = PostManager()
+
+    user = models.ForeignKey(
+            User,
+            blank=True,
+            null=True,
+    )
 
     title = models.CharField(
             max_length=120,
