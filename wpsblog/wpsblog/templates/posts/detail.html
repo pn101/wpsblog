@@ -6,7 +6,7 @@
     <h1>{{ post.title }}</h1>
     {% if request.user == post.user %}
     <a href="{% url 'posts:edit' pk=post.id %}">Edit Post</a>
-    <a href="{% url 'posts:delete' post_id=post.id %}">Delete Post</a></br>
+    <a href="{% url 'posts:delete' pk=post.id %}">Delete Post</a></br>
     {% endif %}
     <img src="{{ post.get_image_url }}" alt="{{ post.title }}" />
     <p>{{ post.content }}</p>

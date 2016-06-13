@@ -1,15 +1,10 @@
-from django.core.urlresolvers import reverse
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from wpsblog.models import Post
+from .base import PostBaseView
 
 
-@login_required
-def delete(request, post_id):
-    post = Post.objects.get(id=post_id)
-    post.delete()
-
-    return redirect(
-            reverse('posts:list')
-    )
+class PostDeleteView(PostBaseView, LoginRequiredMixin, DeleteView):
+    template_name = 'posts/deletepost.html'
+    success_url = reverse_lazy('posts:list')

@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from wpsblog.models import Post
+from .base import PostBaseView
 
 
-class PostEditView(LoginRequiredMixin, TemplateView):
+class PostEditView(PostBaseView, LoginRequiredMixin, UpdateView):
     template_name = 'posts/edit.html'
+    fields = ['title', 'content', 'image']

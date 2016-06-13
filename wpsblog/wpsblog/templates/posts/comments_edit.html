@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ post.title }}</h1>
     <a href="{% url 'posts:edit' post_id=post.id %}">Edit Post</a>
-    <a href="{% url 'posts:delete' post_id=post.id %}">Delete Post</a></br>
+    <a href="{% url 'posts:delete' pk=post.id %}">Delete Post</a></br>
     <img src="{{ post.get_image_url }}" alt="{{ post.title }}" />
     <p>{{ post.content }}</p>
     
