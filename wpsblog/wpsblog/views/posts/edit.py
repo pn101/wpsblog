@@ -1,17 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from wpsblog.models import Post
 
 
-@login_required
-def edit(request, post_id):
-    return render(
-            request,
-            'posts/edit.html',
-            {
-                'site_name': 'Edit Blog',
-                'post': Post.objects.get(id=post_id),
-                'author': 'Philip Nam',
-            }
-    )
+class PostEditView(LoginRequiredMixin, TemplateView):
+    template_name = 'posts/edit.html'
