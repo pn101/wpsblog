@@ -4,5 +4,9 @@
 
 {% block content %}
     <h1>{{ site_name }}</h1>
-    {% include 'posts/form.html' with action="/posts/create/" %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
 {% endblock %}
