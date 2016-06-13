@@ -2,6 +2,6 @@
     {% csrf_token %}
     <input type="text" name="title" placeholder="title..." value="{% if post %}{{ post.title }}{% endif %}">
     <input type="text" name="content" placeholder="content..." value="{% if post %}{{ post.content }}{% endif %}">
-    <input type="file" name="image">
+    <input type="{% if post.image %}hidden{% else %}file{% endif %}" name="image">
     <input type="submit" value="Publish">
 </form>

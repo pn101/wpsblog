@@ -9,7 +9,7 @@
     <ul>
         {% for post in request.user.post_set.all %}
         <li>
-            {{ post.title }}
+        <a href="{% url 'posts:detail' post_id=post.id %}">{{ post.title }}</a>
         </li>
         {% endfor %}
     </ul>

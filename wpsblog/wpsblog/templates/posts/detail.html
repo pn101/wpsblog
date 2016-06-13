@@ -4,8 +4,10 @@
 
 {% block content %}
     <h1>{{ post.title }}</h1>
+    {% if request.user == post.user %}
     <a href="{% url 'posts:edit' post_id=post.id %}">Edit Post</a>
     <a href="{% url 'posts:delete' post_id=post.id %}">Delete Post</a></br>
+    {% endif %}
     <img src="{{ post.get_image_url }}" alt="{{ post.title }}" />
     <p>{{ post.content }}</p>
     
@@ -14,8 +16,10 @@
         {% for comment in post.comment_set.all %}
         <li id="comment-{{ comment.id }}">
             {{ comment.content }}
+            {% if request.user == post.user %}
             <a href="{% url 'posts:comments_edit' post_id=post.id comment_id=comment.id %}">Edit</a>
             <a href="{% url 'posts:comments_delete' post_id=post.id comment_id=comment.id %}">Delete</a>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
