@@ -15,8 +15,8 @@
     <ul>
         {% for comment in post.comment_set.all %}
         <li id="comment-{{ comment.id }}">
-            {{ comment.content }}
-            {% if request.user == post.user %}
+            {{ comment.content }} - <span>by {{ comment.user.username }}</span>
+            {% if request.user == comment.user %}
             <a href="{% url 'posts:comments_edit' post_id=post.id comment_id=comment.id %}">Edit</a>
             <a href="{% url 'posts:comments_delete' post_id=post.id comment_id=comment.id %}">Delete</a>
             {% endif %}

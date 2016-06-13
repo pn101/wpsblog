@@ -1,10 +1,22 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.views.generic import View
 
 
-def signup(request):
-    if (request.method == 'POST'):
+class SignupView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(
+                request,
+                'auth/signup.html',
+                {
+                    'site_name': 'Sign Up',
+                    'author': 'Philip Nam',
+                }
+        )
+
+    def post(self, request, *args, **kwargs):
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
@@ -16,12 +28,3 @@ def signup(request):
         )
 
         return redirect(reverse('auth:login'))
-
-    return render(
-            request,
-            'auth/signup.html',
-            {
-                'site_name': 'Sign Up',
-                'author': 'Philip Nam',
-            }
-    )

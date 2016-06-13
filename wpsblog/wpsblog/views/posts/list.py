@@ -1,16 +1,23 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 
 from wpsblog.models import Post
 
 
 def list(request):
     search = request.GET.get('search')
-    post_list = Post.objects.public
+    post_list = Post.objects.public()
 
     if search:
         post_list = [
                 post for post in post_list if search in post.title
         ]
+
+    page = request.GET.get('page', 1)
+    per = request.GET.get('per', 3)
+
+    paginator = Paginator(post_list, per)
+    post_list = paginator.page(page)
 
     return render(
             request,

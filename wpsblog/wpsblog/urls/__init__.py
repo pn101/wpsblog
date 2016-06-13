@@ -9,7 +9,7 @@ from wpsblog.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', home, name='home'),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^news/$', news, name='news'),
 
     url(r'^', include('wpsblog.urls.auth', namespace='auth')),
