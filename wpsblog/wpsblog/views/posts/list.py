@@ -1,30 +1,9 @@
-from django.shortcuts import render
-from django.core.paginator import Paginator
+from django.views.generic.list import ListView
 
 from wpsblog.models import Post
+from .base import PostBaseView
 
 
-def list(request):
-    search = request.GET.get('search')
-    post_list = Post.objects.public()
-
-    if search:
-        post_list = [
-                post for post in post_list if search in post.title
-        ]
-
-    page = request.GET.get('page', 1)
-    per = request.GET.get('per', 3)
-
-    paginator = Paginator(post_list, per)
-    post_list = paginator.page(page)
-
-    return render(
-            request,
-            'posts/list.html',
-            {
-                'site_name': 'Blog List',
-                'post_list': post_list,
-                'author': 'Philip Nam',
-            }
-    )
+class PostListView(PostBaseView, ListView):
+    template_name = 'posts/list.html'
+    context_object_name = 'post_list'

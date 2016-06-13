@@ -1,15 +1,8 @@
-from django.shortcuts import render
+from django.views.generic.detail import DetailView
 
 from wpsblog.models import Post
+from .base import PostBaseView
 
 
-def detail(request, post_id):
-    return render(
-            request,
-            'posts/detail.html',
-            {
-                'site_name': 'Blog Entry',
-                'post': Post.objects.get(id=post_id),
-                'author': 'Philip Nam',
-            }
-    )
+class PostDetailView(PostBaseView, DetailView):
+    template_name = 'posts/detail.html'
