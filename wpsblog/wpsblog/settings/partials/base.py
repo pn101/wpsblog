@@ -27,6 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'wpsblog',
+    'users',
+    'posts',
+    'bitly',
 ]
 
 MIDDLEWARE_CLASSES = [

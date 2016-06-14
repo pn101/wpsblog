@@ -1,15 +1,19 @@
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from wpsblog.models import Post, Comment
+from wpsblog.models import Post
+from .base import CommentBaseView
 
 
-@login_required
-def comments_create(request, post_id):
-    content = request.POST.get('content')
-    post = Post.objects.get(id=post_id)
-    comment = post.comment_set.create(
-            user=request.user,
-            content=content,
-    )
-    return redirect(comment)
+class PostCommentCreateView(CommentBaseView, LoginRequiredMixin, CreateView):
+    fields = [
+        'content',
+    ]
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.post = Post.objects.get(
+                id=self.kwargs.get('post_id')
+        )
+
+        return super(PostCommentCreateView, self).form_valid(form)
