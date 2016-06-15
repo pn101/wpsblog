@@ -5,16 +5,13 @@ from django.contrib.auth.models import User
 class BitLinkManager(models.Manager):
     pass
 
-
 class BitLink(models.Model):
-
-    objects = BitLinkManager()
 
     user = models.ForeignKey(User)
 
     original_url = models.URLField()
 
-    shorten_url = models.CharField(
+    shorten_hash = models.CharField(
             max_length=6,
     )
 

@@ -6,6 +6,7 @@
         <li><a href="{% url 'naver_posts_list' %}">Naver Blog</a></li>
         
         {% if request.user.is_authenticated %}
+            <li><a href="{% url 'bitly:create' %}">Bitly</a></li>
             <li>Hello <a href="{% url 'auth:mypage' %}">{{ request.user.username }}</a>, welcome.</li>
             <li><a href="{% url 'auth:logout' %}">Logout</a></li>
         {% else %}

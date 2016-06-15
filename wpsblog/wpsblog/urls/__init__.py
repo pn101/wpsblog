@@ -19,4 +19,7 @@ urlpatterns = [
     url(r'^naver/posts/$', naver_posts_list, name='naver_posts_list'),
 
     url(r'^posts/', include('wpsblog.urls.posts', namespace='posts')),
+
+    url(r'^bitly/', include('wpsblog.urls.bitly', namespace='bitly')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

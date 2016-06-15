@@ -1,13 +1,17 @@
 from django.views.generic.edit import CreateView
-import random
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from hashids import Hashids
 
-from bitly.models import BitLink
+from .base import BitLinkBaseView
 
-
-class BitLinkCreateView(CreateView):
-    template_name = 'bitlink/create.html'
-    fields = ['original_url', 'shorten_url']
+class BitLinkCreateView(BitLinkBaseView, LoginRequiredMixin, CreateView):
+    template_name = 'bitlink.html'
+    fields = [
+        'original_url',
+    ]
+    success_url = reverse_lazy('auth:mypage')
 
     def form_valid(self, form):
-        form.instance.shorten_url = random.randint(1, 999999)
+        form.instance.user = self.request.user
         return super(BitLinkCreateView, self).form_valid(form)

@@ -1,1 +1,1 @@
-from .bitlink import BitLink
+from .bitly import BitLink
