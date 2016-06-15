@@ -4,4 +4,4 @@ migrate:
 
 test:
 	- pep8 .
-	- python wpsblog/manage.py test wpsblog
+	- python wpsblog/manage.py test wpsblog bitly posts users
