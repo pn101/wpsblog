@@ -5,6 +5,7 @@ from hashids import Hashids
 
 from .base import BitLinkBaseView
 
+
 class BitLinkCreateView(BitLinkBaseView, LoginRequiredMixin, CreateView):
     template_name = 'bitlink.html'
     fields = [
