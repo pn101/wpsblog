@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
 
@@ -20,4 +21,9 @@ class BitLink(models.Model):
         return original_url
 
     def get_absolute_url(self):
-        pass
+        return reverse(
+                'bitly:redirect',
+                kwargs={
+                    'shorten_hash': self.shorten_hash,
+                }
+        )
