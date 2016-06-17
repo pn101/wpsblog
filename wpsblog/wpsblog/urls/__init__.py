@@ -20,6 +20,4 @@ urlpatterns = [
 
     url(r'^posts/', include('wpsblog.urls.posts', namespace='posts')),
 
-    url(r'^bitly/', include('wpsblog.urls.bitly', namespace='bitly')),
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

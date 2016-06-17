@@ -5,6 +5,8 @@
 {% block content %}
     <h1>{{ site_name }}</h1>
     <p>You are logged in as {{ request.user.username }}</p>
+
+    <a href="{% url 'posts:new' %}">Create FastBlog Post</a>
     <h2>My Posts</h2>    
     <ul>
         {% for post in request.user.post_set.all %}
@@ -19,15 +21,6 @@
         {% for comment in request.user.comment_set.all %}
         <li>
         <a href="{% url 'posts:detail' pk=comment.post.id %}">{{ comment.content }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-
-    <h2>My BitLink</h2>
-    <ul>
-        {% for bitlink in request.user.bitlink_set.all %}
-        <li>
-        <a href="{{ bitlink.get_absolute_url }}">localhost:8000/bitly/{{ bitlink.shorten_hash }}</a>
         </li>
         {% endfor %}
     </ul>
