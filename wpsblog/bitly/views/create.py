@@ -7,9 +7,15 @@ from .base import BitLinkBaseView
 class BitLinkCreateView(BitLinkBaseView, LoginRequiredMixin, CreateView):
     template_name = 'create.html'
     fields = [
-        'content',
+        'original_url',
     ]
+    success_url = '/mypage/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(BitLinkCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(BitLinkCreateView, self).get_context_data(**kwargs)
+        context['site_name'] = 'Create BitLink'
+        return context
