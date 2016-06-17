@@ -8,3 +8,4 @@ script:
     - python wpsblog/manage.py test users posts bitly wpsblog
 notifications:
     slack: pn101:FSNKDNyG3u0ckfwHrEHvk5pG
+    email: false
