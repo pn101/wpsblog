@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ site_name }}{% endblock %}
+
+{% block content %}
+<h1>{{ site_name }}</h1>
+<ul>
+    {% for bitlinklog in bitlink.bitlinklog_set.all %}
+    <li>{{ bitlinklog.http_referer }}</li>
+    <li>{{ bitlinklog.http_user_agent }}</li>
+    <li>{{ bitlinklog.remote_addr }}</li>
+    </br>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -18,7 +18,7 @@ class BitLink(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return original_url
+        return self.original_url
 
     def get_absolute_url(self):
         return reverse(

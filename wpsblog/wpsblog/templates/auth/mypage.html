@@ -29,7 +29,7 @@
     <ul>
         {% for bitlink in request.user.bitlink_set.all %}
         <li>
-        <a href="{{ bitlink.get_absolute_url }}">localhost:8000/bitly/{{ bitlink.shorten_hash }}</a>
+        <a href="{{ bitlink.get_absolute_url }}">localhost:8000/bitly/{{ bitlink.shorten_hash }}</a> - <a href="{% url 'bitly:dashboard' shorten_hash=bitlink.shorten_hash %}">( {{ bitlink.original_url }} - Dashboard )</a>
         </li>
         {% endfor %}
     </ul>
